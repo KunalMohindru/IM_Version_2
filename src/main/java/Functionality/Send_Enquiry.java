@@ -14,15 +14,16 @@ public void PostEnquiry_ISQ() {
 	
 	 WebElement ContactSupplier_btn = driver.findElement(By.xpath("//button[contains (text(),'Contact Supplier')]"));	
 	 wait.until(ExpectedConditions.visibilityOf(ContactSupplier_btn)).click();
-	 
 	 	 
 	 WebElement Next_btn = driver.findElement(By.xpath("//input[@value = 'Next']"));
 	 while (Next_btn.isDisplayed()) {
 		 wait.until(ExpectedConditions.visibilityOf(Next_btn)).click();
 	 }
 	 
-	 WebElement Cross_btn = driver.findElement(By.xpath("//div[@class = 'be-cls']")); 
-	 wait.until(ExpectedConditions.visibilityOf(Cross_btn)).click();
+	 
+	 
+	// WebElement Cross_btn = driver.findElement(By.xpath("//div[@class = 'be-cls']")); 
+	// wait.until(ExpectedConditions.visibilityOf(Cross_btn)).click();
 	 
 }	
 
@@ -42,4 +43,14 @@ public void PostEnquiry_GetLatestPrice (WebElement E){
 	 wait.until(ExpectedConditions.visibilityOf(Cross_btn)).click();	 
 }	
 
+
+public void ThankYouScreen_ViewMessagesBtn()
+{  
+	WebElement ThankYouScreen_ViewMessagesBtn = driver.findElement(By.xpath("//a [@class='tvwBtn']"));
+    wait.until(ExpectedConditions.visibilityOf(ThankYouScreen_ViewMessagesBtn)).click();
+	
 }
+
+}
+
+

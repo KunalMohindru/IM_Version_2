@@ -34,8 +34,8 @@ public void ChangeLocation()
 
 public void ApplyFilters() {
 	
-	WebElement BusinessType_Exporter= driver.findElement(By.xpath("//*[contains (text(),'Exporter')]"));
-	wait.until(ExpectedConditions.visibilityOf(BusinessType_Exporter)).click();	
+	WebElement BusinessType_Wholesaler= driver.findElement(By.xpath("//*[contains (text(),'Wholesaler')]"));
+	wait.until(ExpectedConditions.visibilityOf(BusinessType_Wholesaler)).click();	
 	
 	WebElement RelatedCategories= driver.findElement(By.xpath("//div [@id='stk11']/ul/li/a"));
     wait.until(ExpectedConditions.visibilityOf(RelatedCategories)).click();	

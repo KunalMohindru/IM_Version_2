@@ -22,8 +22,9 @@ public class R1 {
  //Send Enquiry using search page		
  LandingHomePage LoginHomePage_obj = new LandingHomePage ();
  BuyerDashboard BuyerDashboard_obj = LoginHomePage_obj.Buyer_SignIn("9999868769");
- SearchPage SearchPage_obj= BuyerDashboard_obj.Perform_Search();
- SearchPage_obj.NavigateToPDP().ImpCat_BrowseRelatedCategories();
+ 
+ //SearchPage SearchPage_obj= BuyerDashboard_obj.Perform_Search();
+ //SearchPage_obj.NavigateToPDP().ImpCat_BrowseRelatedCategories();
  
  //SearchPage_obj.NavigateToPDP().SendEnquiry_CompareSimilarProductsFromOtherSellers();
  

@@ -23,10 +23,19 @@ public boolean IsElementPresent(By by) {
 				return true;		
 		}catch(NoSuchElementException e) {
 			    return false;
-					
-		}
-}	
+			}
+		
+}
+
+
+public boolean AreStringsSame(String Actual, String Expected) {
 	
+	if(Actual.contains(Expected))
+		return true;
+	
+	else 
+		return false;
+} 	
 }
 
 

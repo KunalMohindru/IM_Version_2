@@ -25,7 +25,7 @@ public class CommonClass {
  public CommonClass() {
 		
 		if (driver == null)
-		{	System.setProperty("webdriver.chrome.driver", "F:\\chromedriverLat\\chromedriver.exe");
+		{	System.setProperty("webdriver.chrome.driver", "F:\\chromedriver\\chromedriver.exe");
 			//WebDriverManager.chromedriver().setup();  
 			driver = new ChromeDriver();
 			wait= new WebDriverWait (driver,60); 

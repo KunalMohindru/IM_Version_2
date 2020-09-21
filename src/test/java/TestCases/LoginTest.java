@@ -21,13 +21,15 @@ public class LoginTest extends BaseTest{
         // Test whether user is able to login the application 		
 		
 		LandingHomePage LoginHomePage_obj = new LandingHomePage ();
-		BuyerDashboard BuyerDashboard_obj = LoginHomePage_obj.Buyer_SignIn("9999868769");
+		BuyerDashboard BuyerDashboard_obj = LoginHomePage_obj.Buyer_SignIn("1622222223");
 		
-		wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//a[contains(text(),'Hi')][@class='rmv cpo Txt_none']"))); 
-		boolean k = IsElementPresent(By.xpath("//a[contains(text(),'Hi')][@class='rmv cpo Txt_none']"));
+		wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//a[contains(text(),'Hi')][@class='rmv cpo ico-usr Hd_dib']"))); 
+		boolean k = IsElementPresent(By.xpath("//a[contains(text(),'Hi')][@class='rmv cpo ico-usr Hd_dib']"));
 
         Assert.assertTrue(k);
+             
        driver.quit();
+       driver = null;
 	}
 
 
@@ -48,7 +50,7 @@ public class LoginTest extends BaseTest{
         
         Assert.assertTrue(result);
         driver.quit();
+        driver = null;
 	}
-
 	
 }
