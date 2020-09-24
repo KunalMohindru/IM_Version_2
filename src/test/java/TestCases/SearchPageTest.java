@@ -20,7 +20,7 @@ import Pages.BuyerDashboard;
 public class SearchPageTest extends BaseTest{
 
 	LandingHomePage LoginHomePage_obj = new LandingHomePage ();
-	BuyerDashboard BuyerDashboard_obj = LoginHomePage_obj.Buyer_SignIn("9999868769");
+	BuyerDashboard BuyerDashboard_obj = LoginHomePage_obj.Buyer_SignIn("1622222223");
 	SearchPage SearchPage_obj = BuyerDashboard_obj.Perform_Search();
 	
 	
@@ -84,26 +84,52 @@ public void TestSearchPageSendEnquiry() {
     
     // Login screen
     
+    try {
+    	Thread.sleep(5000);
+    } catch (InterruptedException e) {
+    	// TODO Auto-generated catch block
+    	e.printStackTrace();
+    }
+    
     WebElement FullLoginScreen_LoginWithPasswordBtn = driver.findElement(By.xpath("//*[@value='Login with Password']"));
     wait.until(ExpectedConditions.visibilityOf(FullLoginScreen_LoginWithPasswordBtn)).click();
    
+    try {
+    	Thread.sleep(5000);
+    } catch (InterruptedException e) {
+    	// TODO Auto-generated catch block
+    	e.printStackTrace();
+    }
+    
+    
     WebElement LoginWithPasswordScreen_EnterPasswordField = driver.findElement(By.xpath("//*[@id='usr_pass']"));
     wait.until(ExpectedConditions.visibilityOf(LoginWithPasswordScreen_EnterPasswordField)).sendKeys("111111");
    
+    try {
+    	Thread.sleep(5000);
+    } catch (InterruptedException e) {
+    	// TODO Auto-generated catch block
+    	e.printStackTrace();
+    }
+    
     WebElement LoginWithPasswordScreen_LoginWithPasswordBtn = driver.findElement(By.xpath("//*[@id='submtbtn']"));
-    wait.until(ExpectedConditions.visibilityOf(LoginWithPasswordScreen_LoginWithPasswordBtn)).click();
+    wait.until(ExpectedConditions.visibilityOf(LoginWithPasswordScreen_LoginWithPasswordBtn)).click(); 
     
     // Messages
-/*    
-    WebElement Product = driver.findElement(By.xpath("//a[@class='fs18 ptitle']"));
-	String ProductName = wait.until(ExpectedConditions.visibilityOf(Product)).getText();
-	System.out.println(ProductName);
 	
+    try {
+    	Thread.sleep(5000);
+    } catch (InterruptedException e) {
+    	// TODO Auto-generated catch block
+    	e.printStackTrace();
+    }
+    
+    
 	WebElement CompanyOnChatScreen = driver.findElement(By.xpath("//p[@class='fs18 mbt15']"));
 	String CompanyNameOnChatScreen = wait.until(ExpectedConditions.visibilityOf(CompanyOnChatScreen)).getText();
 	System.out.println(CompanyNameOnChatScreen);
-*/	try {
-	Thread.sleep(5000);
+	try {
+	Thread.sleep(2000);
 } catch (InterruptedException e) {
 	// TODO Auto-generated catch block
 	e.printStackTrace();
@@ -115,8 +141,16 @@ public void TestSearchPageSendEnquiry() {
     System.out.println(No_Of_Messages);
     String LatestChat = Chats.get(No_Of_Messages - 1).getText();
     System.out.println(LatestChat);
-   
- 
+    
+    
+    Boolean result = AreStringsSame(LatestChat, ProductName);
+    Boolean result_2 = AreStringsSame(CompanyName, CompanyNameOnChatScreen);
+    
+    if (result == true && result_2 == true)
+    Assert.assertTrue(true);
+    else 
+    Assert.assertTrue(false);
+       	
 
 }
 

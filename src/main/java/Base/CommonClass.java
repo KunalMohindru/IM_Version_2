@@ -1,5 +1,6 @@
 package Base;
 
+import java.time.Duration;
 import java.util.NoSuchElementException;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
@@ -28,7 +29,8 @@ public class CommonClass {
 		{	System.setProperty("webdriver.chrome.driver", "F:\\chromedriver\\chromedriver.exe");
 			//WebDriverManager.chromedriver().setup();  
 			driver = new ChromeDriver();
-			wait= new WebDriverWait (driver,60); 
+			wait= new WebDriverWait (driver,60);
+			
 			driver.get("https://www.indiamart.com/");
 			driver.manage().window().maximize();
 			}
