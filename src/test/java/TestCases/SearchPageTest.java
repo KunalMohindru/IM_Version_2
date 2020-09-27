@@ -11,6 +11,9 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+import Intermediate_Screens.LoginWithOneTimePassword_OTP_Screen;
+import Intermediate_Screens.LoginWithPasswordScreen;
+import Intermediate_Screens.SendEnq_ThankyouScreen;
 import Pages.BuyerDashboard;
 import Pages.LandingHomePage;
 import Pages.SearchPage;
@@ -22,14 +25,13 @@ public class SearchPageTest extends BaseTest{
 	LandingHomePage LoginHomePage_obj = new LandingHomePage ();
 	BuyerDashboard BuyerDashboard_obj = LoginHomePage_obj.Buyer_SignIn("1622222223");
 	SearchPage SearchPage_obj = BuyerDashboard_obj.Perform_Search();
-	
+	SendEnq_ThankyouScreen SendEnq_ThankyouScreen_obj = new SendEnq_ThankyouScreen (); 
 	
 @Test (priority=0)
 public void TestProductSearchFunctionality() {
 	
 	    WebElement ProductSearched = driver.findElement(By.xpath("//*[@data-click ='^Prod0Name']"));
 		String ProductSearchedString = wait.until(ExpectedConditions.visibilityOf(ProductSearched)).getText();
-	//	System.out.println(ProductSearchedString);
 		Boolean Result = AreStringsSame(ProductSearchedString, "Parker Pen"); 
 		Assert.assertTrue(Result);	
 }
@@ -54,7 +56,9 @@ public void TestLocationFunctionality() {
 */
 
 @Test (priority =2)
-public void TestSearchPageSendEnquiry() {
+public void TestSearchPageSendEnquiry() throws InterruptedException {
+	
+	// Send Enquiry for a product of a company and then check the same on messages
 	
 	WebElement Product = driver.findElement(By.xpath("//a[@class='fs18 ptitle']"));
 	String ProductName = wait.until(ExpectedConditions.visibilityOf(Product)).getText();
@@ -63,77 +67,25 @@ public void TestSearchPageSendEnquiry() {
 	WebElement Company = driver.findElement(By.xpath("//*[@class='lcname'][@data-click='^CompanyName']"));
 	String CompanyName = wait.until(ExpectedConditions.visibilityOf(Company)).getText();
 	System.out.println(CompanyName);
-	
 	SearchPage_obj.SendEnquiry();
 	
-	WebElement ThankYouScreen_ViewMessagesBtn = driver.findElement(By.xpath("//a [@class='tvwBtn']"));
-    wait.until(ExpectedConditions.visibilityOf(ThankYouScreen_ViewMessagesBtn)).click();
+	// After send enquiry, thank you screen appears which take you to login for full login mode and then to message section
+	Thread.sleep(2000);
+	LoginWithOneTimePassword_OTP_Screen LoginWithOneTimePassword_OTP_Screen_obj = SendEnq_ThankyouScreen_obj.NavigateToMessages(); 
 	
-  
-    //Change Window
-    
-    Set <String> WindowHandles =  driver.getWindowHandles();
-    java.util.Iterator<String> iter  = WindowHandles.iterator();      
-    String FirstWindow = iter.next();
-    String SecondWindow = iter.next();
-    System.out.println(FirstWindow);
-    System.out.println(SecondWindow);
-    
-    driver.switchTo().window(SecondWindow);
- 
-    
-    // Login screen
-    
-    try {
-    	Thread.sleep(5000);
-    } catch (InterruptedException e) {
-    	// TODO Auto-generated catch block
-    	e.printStackTrace();
-    }
-    
-    WebElement FullLoginScreen_LoginWithPasswordBtn = driver.findElement(By.xpath("//*[@value='Login with Password']"));
-    wait.until(ExpectedConditions.visibilityOf(FullLoginScreen_LoginWithPasswordBtn)).click();
-   
-    try {
-    	Thread.sleep(5000);
-    } catch (InterruptedException e) {
-    	// TODO Auto-generated catch block
-    	e.printStackTrace();
-    }
-    
-    
-    WebElement LoginWithPasswordScreen_EnterPasswordField = driver.findElement(By.xpath("//*[@id='usr_pass']"));
-    wait.until(ExpectedConditions.visibilityOf(LoginWithPasswordScreen_EnterPasswordField)).sendKeys("111111");
-   
-    try {
-    	Thread.sleep(5000);
-    } catch (InterruptedException e) {
-    	// TODO Auto-generated catch block
-    	e.printStackTrace();
-    }
-    
-    WebElement LoginWithPasswordScreen_LoginWithPasswordBtn = driver.findElement(By.xpath("//*[@id='submtbtn']"));
-    wait.until(ExpectedConditions.visibilityOf(LoginWithPasswordScreen_LoginWithPasswordBtn)).click(); 
-    
-    // Messages
+	Thread.sleep(2000);
+	LoginWithPasswordScreen LoginWithPasswordScreen_obj = LoginWithOneTimePassword_OTP_Screen_obj.Select_LoginWithPassword_Option();
 	
-    try {
-    	Thread.sleep(5000);
-    } catch (InterruptedException e) {
-    	// TODO Auto-generated catch block
-    	e.printStackTrace();
-    }
-    
-    
+	Thread.sleep(2000);
+	LoginWithPasswordScreen_obj.EnterPassword();
+	
+    // On Message screen, check whether the enquiry has been sent for the correct product and company
+	Thread.sleep(5000);
 	WebElement CompanyOnChatScreen = driver.findElement(By.xpath("//p[@class='fs18 mbt15']"));
 	String CompanyNameOnChatScreen = wait.until(ExpectedConditions.visibilityOf(CompanyOnChatScreen)).getText();
 	System.out.println(CompanyNameOnChatScreen);
-	try {
+	
 	Thread.sleep(2000);
-} catch (InterruptedException e) {
-	// TODO Auto-generated catch block
-	e.printStackTrace();
-}
     wait.until(ExpectedConditions.visibilityOf(driver.findElement(By.xpath("//*[@id=\"helpmsg\"]/div[3]/div/a")))).click();
 
     java.util.List<WebElement> Chats = driver.findElements(By.xpath("//*[@class='inner_msg_div']"));
@@ -141,17 +93,15 @@ public void TestSearchPageSendEnquiry() {
     System.out.println(No_Of_Messages);
     String LatestChat = Chats.get(No_Of_Messages - 1).getText();
     System.out.println(LatestChat);
-    
-    
+        
     Boolean result = AreStringsSame(LatestChat, ProductName);
-    Boolean result_2 = AreStringsSame(CompanyName, CompanyNameOnChatScreen);
-    
+    Boolean result_2 = AreStringsSame(CompanyNameOnChatScreen, CompanyName);
+    System.out.println(result);
+    System.out.println(result_2);
     if (result == true && result_2 == true)
     Assert.assertTrue(true);
     else 
     Assert.assertTrue(false);
-       	
 
 }
-
 }
