@@ -5,8 +5,18 @@
   <version>0.0.1-SNAPSHOT</version>
   <name>Automation</name>
   <dependencies>
-  
-  
+
+
+<dependency>
+	<groupId>com.aventstack</groupId>
+	<artifactId>extentreports</artifactId>
+	<version>3.1.2</version>
+</dependency>
+<!-- Thanks for using https://jar-download.com -->
+
+
+
+
 <dependency>
         <groupId>org.seleniumhq.selenium</groupId>
         <artifactId>selenium-java</artifactId>

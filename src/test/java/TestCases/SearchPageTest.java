@@ -1,6 +1,5 @@
 package TestCases;
 
-import java.awt.List;
 import java.util.Set;
 
 import javax.swing.text.html.HTMLDocument.Iterator;
