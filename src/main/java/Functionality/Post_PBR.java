@@ -20,8 +20,8 @@ public class Post_PBR extends CommonClass{
 		while (Next_btn.isDisplayed()){
 			 wait.until(ExpectedConditions.visibilityOf(Next_btn)).click();
 		 }
-		 WebElement Cross_btn = driver.findElement(By.xpath("//div[@class = 'be-cls']")); 
-		 wait.until(ExpectedConditions.visibilityOf(Cross_btn)).click();
+//		 WebElement Cross_btn = driver.findElement(By.xpath("//div[@class = 'be-cls']")); 
+//		 wait.until(ExpectedConditions.visibilityOf(Cross_btn)).click();
 }				 
 }
 

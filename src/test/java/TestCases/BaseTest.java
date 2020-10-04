@@ -10,12 +10,6 @@ import Base.CommonClass;
 
 public class BaseTest extends CommonClass{
 
-/*	@AfterSuite
-	public void teardown()
-	{
-	CommonClass.quit();
-	}
-*/
 public boolean IsElementPresent(By by) {
 		
 		try {
@@ -23,8 +17,7 @@ public boolean IsElementPresent(By by) {
 				return true;		
 		}catch(NoSuchElementException e) {
 			    return false;
-			}
-		
+			}		
 }
 
 
@@ -35,8 +28,6 @@ public boolean AreStringsSame(String Actual, String Expected) {
 	
 	else 
 		return false;
-	
-	
 } 	
 }
 

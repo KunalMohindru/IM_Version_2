@@ -8,10 +8,15 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeGroups;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import Intermediate_Screens.LoginWithOneTimePassword_OTP_Screen;
 import Intermediate_Screens.LoginWithPasswordScreen;
+import Intermediate_Screens.PostPBR_ThankyouScreen;
 import Intermediate_Screens.SendEnq_ThankyouScreen;
 import Pages.BuyerDashboard;
 import Pages.LandingHomePage;
@@ -21,23 +26,30 @@ import Pages.BuyerDashboard;
 
 public class SearchPageTest extends BaseTest{
 
-	LandingHomePage LoginHomePage_obj = new LandingHomePage ();
-	BuyerDashboard BuyerDashboard_obj = LoginHomePage_obj.Buyer_SignIn("1622222223");
-	SearchPage SearchPage_obj = BuyerDashboard_obj.Perform_Search();
 	SendEnq_ThankyouScreen SendEnq_ThankyouScreen_obj = new SendEnq_ThankyouScreen (); 
+	PostPBR_ThankyouScreen PostPBR_ThankyouScreen_obj = new PostPBR_ThankyouScreen ();
 	
-@Test (priority=0)
-public void TestProductSearchFunctionality() {
+@BeforeMethod
+public void ProductSearchFunctionality() {
+	
+	    LandingHomePage LoginHomePage_obj = new LandingHomePage ();
+	    BuyerDashboard BuyerDashboard_obj = LoginHomePage_obj.Buyer_SignIn("1622222223");
+	    SearchPage SearchPage_obj = BuyerDashboard_obj.Perform_Search();
 	
 	    WebElement ProductSearched = driver.findElement(By.xpath("//*[@data-click ='^Prod0Name']"));
 		String ProductSearchedString = wait.until(ExpectedConditions.visibilityOf(ProductSearched)).getText();
-		Boolean Result = AreStringsSame(ProductSearchedString, "Parker Pen"); 
+		Boolean Result = AreStringsSame(ProductSearchedString, "Parker"); 
+	//	System.out.println(ProductSearchedString);
+		System.out.println("Before Method");
 		Assert.assertTrue(Result);	
 }
-/*
-@Test (priority=1)
-public void TestLocationFunctionality() {
+
+
+@Test (priority=0)
+public void LocationFunctionality() {
 	
+	System.out.println("Method 1");
+	/*
 	SearchPage_obj.ChangeLocation();
 	
 	WebElement SellerLocation1 = driver.findElement(By.xpath("//p[@class='sm clg']"));
@@ -50,13 +62,15 @@ public void TestLocationFunctionality() {
 	Boolean Result = AreStringsSame(SellerLocationString, "Ah"); 
 	
 	Assert.assertTrue(Result);
-	
+*/	
 }
-*/
 
-@Test (priority =2)
+
+
+@Test (priority=1)
 public void TestSearchPageSendEnquiry() throws InterruptedException {
-	
+
+	/*
 	// Send Enquiry for a product of a company and then check the same on messages
 	
 	WebElement Product = driver.findElement(By.xpath("//a[@class='fs18 ptitle']"));
@@ -101,6 +115,49 @@ public void TestSearchPageSendEnquiry() throws InterruptedException {
     Assert.assertTrue(true);
     else 
     Assert.assertTrue(false);
+*/
+	System.out.println("Method 2");
 
+}
+
+
+@Test (priority=3)
+public void PostPBRFunctionality() throws InterruptedException {
+
+	/*
+	SearchPage_obj.PostPBR();
+	Thread.sleep(2000);
+	LoginWithOneTimePassword_OTP_Screen LoginWithOneTimePassword_OTP_Screen_obj = PostPBR_ThankyouScreen_obj.NavigateToManageYourRequirement();
+	Thread.sleep(2000);
+	LoginWithPasswordScreen LoginWithPasswordScreen_obj = LoginWithOneTimePassword_OTP_Screen_obj.Select_LoginWithPassword_Option();
+	Thread.sleep(2000);
+	LoginWithPasswordScreen_obj.EnterPassword();
+	Thread.sleep(2000);
+	
+	// On MBR screen verify whether it has been posted for the correct product or not
+	
+	WebElement PostedPBRforProduct = driver.findElement(By.xpath("//div[@id='Listing1']/div/h1/a"));
+	String PostedPBRforProduct_Name = PostedPBRforProduct.getText();
+	System.out.println(PostedPBRforProduct_Name);
+
+	Boolean result = AreStringsSame(PostedPBRforProduct_Name, "Parker");
+    Assert.assertTrue(result);
+*/
+	System.out.println("Method 3");
+}
+
+@AfterClass
+public void closeBrowser() {
+	
+	    System.out.println("After Method");
+	    if (driver!=null)
+	    	driver.close();	
+}
+@AfterMethod
+public void Browser() {
+	
+	    System.out.println("nu;; browser");
+	    if (driver!=null)
+	    	driver = null;	
 }
 }

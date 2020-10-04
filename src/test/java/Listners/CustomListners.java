@@ -23,9 +23,9 @@ public class CustomListners implements ITestListener{
 	
 		public void onTestStart(ITestResult result) {
 	
-			test = extent.createTest(result.getTestClass().getName());
+	//		test = extent.createTest(result.getTestClass().getName());
 		
-//		test = extent.createTest(result.getTestClass().getName()+ " -> " + result.getMethod().getMethodName());
+		test = extent.createTest(result.getTestClass().getName()+ " -> " + result.getMethod().getMethodName());
 	
 		}
 		
